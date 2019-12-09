@@ -16,5 +16,6 @@
 + (BOOL)getIsAddObserver;
 + (void)setLastPushWaitMessage:(NSDictionary *)msg;
 + (NSDictionary *)getLastPushWaitMessage;
++ (BOOL)runPushWaitMessage;
 
 @end

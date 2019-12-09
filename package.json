@@ -1,6 +1,6 @@
 {
   "name": "react-native-rn-umeng-module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "react native umeng sdk",
   "main": "index.js",
   "scripts": {

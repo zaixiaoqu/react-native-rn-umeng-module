@@ -31,6 +31,7 @@ buildscript {
         repositories {
             google()
             jcenter()
+            maven { url 'https://dl.bintray.com/umsdk/release' }
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.1'
@@ -68,11 +69,58 @@ repositories {
     }
     google()
     jcenter()
+    maven { url 'https://dl.bintray.com/umsdk/release' }
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+
+
+
+
+    implementation  'com.umeng.umsdk:common:2.1.8'
+    implementation  'com.umeng.umsdk:utdid:1.1.5.3'
+
+    //PushSDK
+    api 'com.umeng.umsdk:push:6.0.1'
+
+    //小米Push通道
+    implementation 'com.umeng.umsdk:xiaomi-push:3.6.17'
+    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.1.0'
+
+    //华为Push通道
+    implementation 'com.umeng.umsdk:huawei-basetb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-pushtb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-umengaccs:1.2.1'
+
+    //魅族Push通道
+    api 'com.umeng.umsdk:meizu-push:3.8.1'
+    api 'com.umeng.umsdk:meizu-umengaccs:1.0.6'
+
+    //Oppo Push通道
+    implementation 'com.umeng.umsdk:oppo-push:1.0.1'
+    implementation 'com.umeng.umsdk:oppo-umengaccs:1.0.3'
+
+    //vivo Push通道
+    implementation 'com.umeng.umsdk:vivo-push:2.3.1'
+    implementation 'com.umeng.umsdk:vivo-umengaccs:1.0.4'
+
+    implementation 'com.umeng.umsdk:push:6.0.1'
+
+    //友盟分享
+    api 'com.umeng.umsdk:share-core:6.9.6'
+    api 'com.umeng.umsdk:share-qq:6.9.6'
+    api 'com.umeng.umsdk:share-wx:6.9.6'
+    api 'com.umeng.umsdk:share-sina:6.9.6'
+    //分享面板
+    implementation 'com.umeng.umsdk:share-board:6.9.6'
+
+    //友盟统计
+    implementation 'com.umeng.umsdk:analytics:8.1.4'
 }
 
 def configureReactNativePom(def pom) {

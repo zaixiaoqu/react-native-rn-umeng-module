@@ -201,4 +201,14 @@ RCT_EXPORT_METHOD(getDeviceToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
   }
 }
 
+
+RCT_EXPORT_METHOD(awakenWaitPush:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    if ([pushListener runPushWaitMessage] == YES) {
+        resolve(@"1");
+    } else {
+        resolve(@"0");
+    }
+}
+
 @end

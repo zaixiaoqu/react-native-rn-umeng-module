@@ -113,13 +113,4 @@ RCT_EXPORT_MODULE();
     return NO;
 }
 
-RCT_EXPORT_METHOD(awakenWaitPush:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-    if ([pushListener runPushWaitMessage] == YES) {
-        resolve(@"1");
-    } else {
-        resolve(@"0");
-    }
-}
-
 @end

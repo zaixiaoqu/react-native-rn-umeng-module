@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 
+#import "pushListener.h"
+
 @interface UMPushModule : NSObject <RCTBridgeModule>
 
 +(void)registerDeviceToken:(NSData *)deviceToken;
