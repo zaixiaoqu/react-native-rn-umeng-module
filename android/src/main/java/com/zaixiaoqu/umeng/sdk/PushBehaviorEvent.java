@@ -74,7 +74,7 @@ public class PushBehaviorEvent {
 
             @Override
             public void launchApp(Context context, UMessage msg) {
-                super.launchApp(context, msg);
+                // super.launchApp(context, msg);
                 clikHandlerSendEvent(PushModule.DidOpenMessage, msg);
             }
 
