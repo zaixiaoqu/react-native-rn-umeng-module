@@ -78,10 +78,6 @@ dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
-
-
-
-
     implementation  'com.umeng.umsdk:common:2.1.8'
     implementation  'com.umeng.umsdk:utdid:1.1.5.3'
 
