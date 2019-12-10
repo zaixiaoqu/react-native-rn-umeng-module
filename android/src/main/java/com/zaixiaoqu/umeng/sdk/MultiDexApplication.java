@@ -1,25 +1,17 @@
 package com.zaixiaoqu.umeng.sdk;
 
-import android.app.Application;
 import android.content.Context;
 import androidx.multidex.MultiDex;
 
 import com.zaixiaoqu.umeng.config.UMRegister;
 
 
-public class MultiDexApplication extends Application {
+public class MultiDexApplication extends androidx.multidex.MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        (new PushBehaviorEvent()).enablePush(this);
     }
 
     /**

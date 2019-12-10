@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
+import com.zaixiaoqu.umeng.sdk.PushBehaviorEvent;
 import com.zaixiaoqu.umeng.sdk.RNUMConfigure;
 
 import org.android.agoo.huawei.HuaWeiRegister;
@@ -145,5 +146,8 @@ public class UMRegister {
         }
         //vivo 通道
         VivoRegister.register(application);
+
+        // 注册push
+        (new PushBehaviorEvent()).enablePush(application);
     }
 }
