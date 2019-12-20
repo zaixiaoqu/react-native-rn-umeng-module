@@ -9,7 +9,15 @@ import android.util.Log;
 import com.umeng.message.UmengNotifyClickActivity;
 import org.android.agoo.common.AgooConstants;
 
-public class UmPushActivity extends UmengNotifyClickActivity {
+public abstract class UmPushActivity extends UmengNotifyClickActivity {
+
+    /**
+     * 得到主Activity
+     *
+     * @return
+     */
+    protected abstract Class getMainActivity();
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -23,10 +31,18 @@ public class UmPushActivity extends UmengNotifyClickActivity {
             PushModule.setLastPushWaitMessage(body);
         } catch (Exception e) {
         }
-        this.onRun(intent, this);
-
+        this.goMainActivity(intent, this);
     }
 
-    protected void onRun(Intent intent, Context context) {
+    /**
+     *
+     *
+     * @param intent
+     * @param context
+     */
+    private void goMainActivity(Intent intent, Context context) {
+        intent.setClass(context, getMainActivity());
+        startActivity(intent);
+        finish();
     }
 }
