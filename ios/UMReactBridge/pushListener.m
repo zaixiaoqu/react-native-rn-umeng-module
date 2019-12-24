@@ -96,7 +96,7 @@ RCT_EXPORT_MODULE();
 
 +(BOOL)runPushWaitMessage {
     NSDictionary *waitMessage = [pushListener getLastPushWaitMessage];
-    if (NULL == waitMessage) {
+    if (nil == waitMessage || NULL == waitMessage || [waitMessage isEqual:[NSNull null]]) {
         return NO;
     }
     @try {
