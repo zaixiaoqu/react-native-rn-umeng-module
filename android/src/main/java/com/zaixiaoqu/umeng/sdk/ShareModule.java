@@ -1,12 +1,16 @@
 package com.zaixiaoqu.umeng.sdk;
 
+import java.io.File;
 import java.net.URLEncoder;
 import java.util.Map;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -83,6 +87,8 @@ public class ShareModule extends ReactContextBaseJavaModule {
             public void run() {
 
                 if (!TextUtils.isEmpty(weburl)){
+
+                    Log.i("testetsteet", "1");
                     UMWeb web = new UMWeb(weburl);
                     web.setTitle(title);
                     web.setDescription(text);
@@ -95,12 +101,16 @@ public class ShareModule extends ReactContextBaseJavaModule {
                             .setCallback(getUMShareListener(successCallback))
                             .share();
                 }else if (getImage(img)!=null){
+                    Log.i("testetsteet", "2");
+                    UMImage shareImage = getImage(img);
+                    shareImage.setThumb(shareImage);
                     new ShareAction(ma).withText(text)
-                            .withMedia(getImage(img))
+                            .withMedia(shareImage)
                             .setPlatform(getShareMedia(sharemedia))
                             .setCallback(getUMShareListener(successCallback))
                             .share();
                 }else {
+                    Log.i("testetsteet", "3");
                     new ShareAction(ma).withText(text)
                             .setPlatform(getShareMedia(sharemedia))
                             .setCallback(getUMShareListener(successCallback))
@@ -140,11 +150,19 @@ public class ShareModule extends ReactContextBaseJavaModule {
             return new UMImage(ma,url);
         }else if(url.startsWith("/")){
             return new UMImage(ma,url);
+        }else if(url.startsWith("data:image") && url.indexOf(",") > 0){
+            try {
+                byte[] decodedString = Base64.decode(url.split(",")[1], Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                return new UMImage(ma, decodedByte);
+            } catch (Exception e) {
+
+            }
         }else if(url.startsWith("res")){
             return new UMImage(ma, ResContainer.getResourceId(ma,"drawable",url.replace("res/","")));
-        }else {
-            return new UMImage(ma,url);
         }
+        return new UMImage(ma,url);
     }
     @ReactMethod
     public void auth(final int  sharemedia, final Callback successCallback){
@@ -162,7 +180,6 @@ public class ShareModule extends ReactContextBaseJavaModule {
                         WritableMap result = Arguments.createMap();
                         for (String key:map.keySet()){
                             result.putString(key,map.get(key));
-                            Log.e("todoremove","key="+key+"   value"+map.get(key).toString());
                         }
                         successCallback.invoke(0,result,"success");
                     }
