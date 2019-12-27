@@ -220,8 +220,10 @@ public class ShareModule extends ReactContextBaseJavaModule {
                             .setCallback(getUMShareListener(successCallback))
                             .open();
                 }else if (getImage(img)!=null){
+                    UMImage shareImage = getImage(img);
+                    shareImage.setThumb(shareImage);
                     new ShareAction(ma).withText(text)
-                            .withMedia(getImage(img))
+                            .withMedia(shareImage)
                             .setDisplayList(getShareMedias(sharemedias))
                             .setCallback(getUMShareListener(successCallback))
                             .open();
